@@ -76,7 +76,7 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public Board 게시글수정화면(int id, User sessionUser) {
+    public BoardResponse.DTO 게시글수정화면(int id, User sessionUser) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(()-> new Exception404("게시글을 찾을 수 없습니다"));
 
@@ -93,7 +93,7 @@ public class BoardService {
             throw new Exception403("게시글 수정 권한이 없습니다.");
         }
 
-        return board;
+        return new BoardResponse.DTO(board);
     }
 
     public BoardResponse.DTO 게시글수정화면V2(int id, User sessionUser) {

@@ -127,8 +127,10 @@ public class BoardController {
     @GetMapping("/api/board/{id}/update-form")
     public String updateForm(@PathVariable("id") int id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        Board board = boardService.게시글수정화면(id, sessionUser);
-        request.setAttribute("model", board);
+        BoardResponse.DTO model = boardService.게시글수정화면(id, sessionUser);
+        request.setAttribute("model", model);
+//        Board board = boardService.게시글수정화면(id, sessionUser);
+//        request.setAttribute("model", board);
         return "board/update-form";
     }
 
